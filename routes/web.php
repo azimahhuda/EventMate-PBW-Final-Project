@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SessionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,6 @@ use App\Http\Controllers\UserController;
 */
 
 Route::resource('user', UserController::class);
+
+Route:: get('/sesi',[SessionController::class,'index']);
+Route:: post('/sesi/login',[SessionController::class,'login']);
