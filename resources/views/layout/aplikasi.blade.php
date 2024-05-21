@@ -9,7 +9,10 @@
 <body>  
 
     <div class="container py-5">
-       @yield('konten') 
+        @if (Auth::check())
+        @include('komponen/menu')
+        @endif
+        @yield('konten') 
     </div>
 </body>
 </html>
