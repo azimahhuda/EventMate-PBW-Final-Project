@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('{{ asset('img/landingpbg.png') }}'); 
+            background-size: cover;
+            background-repeat: no-repeat; 
+            background-position: 50% 10%;
+        }
         .accordion .contentBox .label::before
         {
             content: '+';
@@ -29,28 +37,30 @@
 </head>
 <body class="font-body">
     <header>
-        <nav id="navbar" class="flex items-center justify-between flex-wrap bg-[#D0E1F5] p-6 font-body">
-            <div class="flex items-center flex-shrink-0 text-white mr-6 ml-20">
-                <a href="#">
-                    <img src="{{ asset('img/NavLogo.png') }}" class="fill-current h-12 mr-2">
-                </a>
-            </div>
-
-            <div class="w-full block lg:flex lg:items-center lg:w-auto mr-20">
-              <div class="text-lg font-semibold lg:flex-grow text-black justify-end">
-                <a href="#" class="block mt-4 lg:inline-block lg:mt-0 hover:text-customBlue mr-8">About</a>
-                <a href="#" class="block mt-4 lg:inline-block lg:mt-0 hover:text-customBlue mr-8">FAQ</a>
-                <a href="#" class="block mt-4 lg:inline-block lg:mt-0 hover:text-customBlue mr-10">Contact</a>
-              </div>
-              
-              <div>
-                <a href="#" class="bg-customBlue font-semibold inline-block text-lg px-6 py-3 leading-none rounded-md text-white hover:bg-[#B5179E] mt-4 lg:mt-0">Sign In</a>
-              </div>
+        <nav id="navbar" class="fixed top-0 left-0 w-full bg-[#D0E1F5] p-6 font-body z-50">
+            <div class="flex items-center justify-between flex-wrap">
+                <div class="flex items-center flex-shrink-0 text-white mr-6 ml-20">
+                    <a id="navlogo" href="#welcome">
+                        <img src="{{ asset('img/NavLogo.png') }}" class="fill-current h-12 mr-2">
+                    </a>
+                </div>
+    
+                <div class="w-full block lg:flex lg:items-center lg:w-auto mr-20">
+                  <div class="text-lg font-semibold lg:flex-grow text-black justify-end">
+                    <a href="#aboutsection" class="block mt-4 lg:inline-block lg:mt-0 hover:text-customBlue mr-8">About</a>
+                    <a href="#faqsection" class="block mt-4 lg:inline-block lg:mt-0 hover:text-customBlue mr-8">FAQ</a>
+                    <a href="#contactsection" class="block mt-4 lg:inline-block lg:mt-0 hover:text-customBlue mr-10">Contact</a>
+                  </div>
+                  
+                  <div>
+                    <a href="#" class="bg-customBlue font-medium inline-block text-lg px-6 py-3 leading-none rounded-md text-white hover:bg-[#B5179E] mt-4 lg:mt-0">Sign In</a>
+                  </div>
+                </div>
             </div>
         </nav>
     </header>
 
-    <div id="welcome" class="flex item-center justify-center gap-20">
+    <div id="welcome" class="flex item-center justify-center gap-20 mt-24">
         <div class="mt-20">
             <img src="{{ asset('img/img1lp.png') }}">
         </div>
@@ -60,7 +70,7 @@
         </div>
     </div>
 
-    <div id="aboutsection" class="flex item-center justify-center gap-16 mt-40">
+    <div id="aboutsection" class="flex item-center justify-center gap-16 mt-80">
         <div class="ml-48 mt-20">
             <h3 class="text-4xl font-bold mb-5">About</h3>
             <p class="text-xl">EventMate is dedicated to supporting community events.</br>
@@ -77,7 +87,7 @@
         </div>
     </div>
 
-    <div id="faqsection" class="accordion mt-44 mb-44">
+    <div id="faqsection" class="accordion mt-80 mb-96">
         <h1 class="flex justify-center text-4xl font-bold mb-10">Frequently Asked Question</h1>
         <div class="flex item-center justify-around ml-60 mr-36">
             <div class="w-60 mt-10">
@@ -87,7 +97,7 @@
                     EventMate is smooth,</br>
                     enjoyable, and successful!</h3>
                 <button class="mt-5">
-                    <a href="#" class="bg-customBlue rounded-full py-2 px-4 text-sm text-white font-semibold hover:bg-[#B5179E]">Contact Us</a>
+                    <a href="#contactsection" class="bg-customBlue rounded-full py-2 px-4 text-sm text-white font-semibold hover:bg-[#B5179E]">Contact Us</a>
                 </button>
             </div>
 
@@ -136,6 +146,39 @@
                 </div>
             </div> 
         </div>
+    </div>
+
+    <div id="contactsection" class="flex item-center justify-between mt-96 mb-20 mx-60">
+        <div class="mt-60">
+            <div id="footerlogo">
+                <a href="#welcome">
+                    <img src="{{ asset('img/footerlogo.png') }}" style="height: 65px">
+                </a>
+            </div>
+            <h3 class="text-xl mt-5">Scheduling Events Made Easy</h3>
+        </div>
+        <div class="mt-60">
+            <div class="flex flex-row mt-3">
+                <a href="#contactsection">
+                    <img src="{{ asset('img/emailicon.png') }}" style="height: 20px">
+                </a>
+                <a href="#contactsection" class="text-lg ml-3 -mt-1">eventmate@gmail.com</a>
+            </div>
+            <div class="flex flex-row mt-3">
+                <a href="#contactsection">
+                    <img src="{{ asset('img/waicon.png') }}" style="height: 22px">
+                </a>
+                <a href="#contactsection" class="text-lg ml-3">081212121212</a>
+            </div>
+            <div class="flex flex-row mt-3">
+                <a href="#contactsection">
+                    <img src="{{ asset('img/igicon.png') }}" style="height: 22px">
+                </a>
+                <a href="#contactsection" class="text-lg ml-3 -mt-1">eventmate.id</a>
+            </div>
+            <p class="mt-6">Copyright by EventMate, Inc. 2024</p>
+        </div>
+    </div>
 
     <script>
         const accordion = document.getElementsByClassName ('contentBox');
@@ -145,6 +188,84 @@
                 this.classList.toggle('active')
             })
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const contactButton = document.querySelector("#navbar #navlogo");
+
+            contactButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                
+                const targetSection = document.querySelector("#welcome");
+                const headerOffset = document.querySelector("header").offsetHeight; 
+                
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const links = document.querySelectorAll("nav a[href^='#']");
+
+            for (const link of links) {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    const targetID = link.getAttribute("href");
+                    const targetSection = document.querySelector(targetID);
+
+                    const headerOffset = window.innerHeight / 5;
+                    const elementPosition = targetSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                });
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const contactButton = document.querySelector("#faqsection button");
+
+            contactButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                
+                const targetSection = document.querySelector("#contactsection");
+                const headerOffset = document.querySelector("header").offsetHeight; 
+                
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const contactButton = document.querySelector("#contactsection #footerlogo");
+
+            contactButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                
+                const targetSection = document.querySelector("#welcome");
+                const headerOffset = document.querySelector("header").offsetHeight; 
+                
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            });
+        });
     </script>
 </body>
 </html>
