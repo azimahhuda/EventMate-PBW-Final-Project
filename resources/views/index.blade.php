@@ -53,7 +53,7 @@
                   </div>
                   
                   <div>
-                    <a href="#" class="bg-customBlue font-medium inline-block text-lg px-6 py-3 leading-none rounded-md text-white hover:bg-[#B5179E] mt-4 lg:mt-0">Sign In</a>
+                    <a href="/sesi" class="bg-customBlue font-medium inline-block text-lg px-6 py-3 leading-none rounded-md text-white hover:bg-[#B5179E] mt-4 lg:mt-0">Sign In</a>
                   </div>
                 </div>
             </div>
