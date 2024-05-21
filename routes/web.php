@@ -19,3 +19,5 @@ Route::resource('user', UserController::class);
 Route::get('sesi', [SessionController::class, 'index']);
 Route::post('sesi/login', [SessionController::class, 'login']);
 Route::get('sesi/logout', [SessionController::class, 'logout']);
+Route::get('sesi/signup', [SessionController::class, 'signup']);
+Route::post('sesi/create', [SessionController::class, 'create']);
