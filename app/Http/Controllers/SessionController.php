@@ -8,31 +8,31 @@ use Illuminate\Support\Facades\Session;
 
 class SessionController extends Controller
 {
-    function index(){
-        return view("sesi/index");
+
+    function index()
+    {
+        return view('sesi/index');
     }
-
-    function login(Request $request){
-
-        Session::flash('email', $request->email);
+    
+    function login(Request $request)
+    {
         $request->validate([
-            'email'=>'required',
-            'password'=>'required'
-        ],[
-            'email.required'=>'Email wajib diisi',
-            'password.required'=>'Password wajib diisi',
-            
+            'email' => 'required',
+            'password' => 'required'
+        ], [
+            'email.required' => 'Email wajib diisi',
+            'password.required' => 'Password wajib diisi'
         ]);
 
-        $infologin =[
-            'email'=>$request->email,
-            'password'=>$request->password
+        $infologin = [
+            'email' => $request->email,
+            'password' => $request->password
         ];
-
-        if(Auth::attempt($infologin)){
-            return redirect('user')->with('sucsess', 'Berhasil login');
-        }else{
-            return redirect('sesi')->withErrors('Username dan password yang dimasukkan tidak valid');
+        
+        if (Auth::attempt($infologin)) {
+            return redirect('user')->with('success', 'Berhasil login');
+        } else {
+            return redirect('sesi')->withErrors(['login_failed' => 'Username dan password yang dimasukkan tidak sesuai'])->withInput();
         }
     }
 }

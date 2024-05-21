@@ -16,5 +16,5 @@ use App\Http\Controllers\SessionController;
 
 Route::resource('user', UserController::class);
 
-Route:: get('/sesi',[SessionController::class,'index']);
-Route:: post('/sesi/login',[SessionController::class,'login']);
+Route::get('sesi', [SessionController::class, 'index']);
+Route::post('sesi/login', [SessionController::class, 'login']);
