@@ -32,7 +32,7 @@ class SessionController extends Controller
         ];
         
         if (Auth::attempt($infologin)) {
-            return redirect('user')->with('success','Berhasil login');
+            return redirect('dashboard')->with('success','Berhasil login');
         } else {
             return redirect('sesi')->withErrors(['login_failed' => 'Username dan password yang dimasukkan tidak sesuai'])->withInput();
         }
@@ -78,7 +78,7 @@ class SessionController extends Controller
         ];
         
         if (Auth::attempt($infologin)) {
-            return redirect('user')->with('success', Auth::User()->name .' Berhasil login');
+            return redirect('dashboard')->with('success', Auth::User()->name .' Berhasil login');
         } else {
             return redirect('sesi')->withErrors(['login_failed' => 'Username dan password yang dimasukkan tidak sesuai'])->withInput();
         }       
