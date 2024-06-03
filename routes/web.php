@@ -21,5 +21,7 @@ Route::get('/index', [LPController::class, 'index']);
 
 Route::get('sesi', [SessionController::class, 'index']);
 Route::get('sesi/signup', [SessionController::class, 'signup']);
+Route::get('sesi/login', [SessionController::class, 'login']);
+Route::get('sesi/create', [SessionController::class, 'create']);
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
