@@ -10,7 +10,7 @@ class EventParticipant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'event_id', 'user_id', 'attendance', 'feedback'
+        'event_id', 'user_id', 'attendance', 'feedback', 'name', 'email', 'phone'
     ];
 
     public function event()

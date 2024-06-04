@@ -23,10 +23,8 @@ class CreateEventsTable extends Migration
             $table->boolean('attendance')->default(false);
             $table->boolean('polling')->default(false);
             $table->string('event_code', 6)->unique();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

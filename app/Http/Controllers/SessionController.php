@@ -15,7 +15,7 @@ class SessionController extends Controller
     {
         return view('sesi/index');
     }
-    
+
     function login(Request $request)
     {
         $request->validate([
@@ -30,27 +30,30 @@ class SessionController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-        
+
         if (Auth::attempt($infologin)) {
-            return redirect('dashboard')->with('success','Berhasil login');
+            return redirect('dashboard')->with('success', 'Berhasil login');
         } else {
             return redirect('sesi')->withErrors(['login_failed' => 'Username dan password yang dimasukkan tidak sesuai'])->withInput();
         }
     }
 
-    function logout(){
+    function logout()
+    {
         Auth::logout();
-        return redirect('sesi')->with('success','Berhasil Logout');
+        return redirect('sesi')->with('success', 'Berhasil Logout');
     }
 
-    function signup(){
+    function signup()
+    {
         return view('sesi/signup');
     }
 
-    function create(Request $request){
+    function create(Request $request)
+    {
         $request->validate([
-            'name'=>'required',
-            'phone'=>'required',
+            'name' => 'required',
+            'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6'
         ], [
@@ -60,14 +63,14 @@ class SessionController extends Controller
             'email.email' => 'Silahkan masukkan email yang valid',
             'email.unique' => 'Email sudah pernah digunakan',
             'password.required' => 'Password wajib diisi',
-            'password.min'=>'Minimum password 6 karakter'
+            'password.min' => 'Minimum password 6 karakter'
         ]);
 
-        $data= [
-            'name'=>$request->name,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password)
+        $data = [
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
         ];
 
         User::create($data);
@@ -76,11 +79,11 @@ class SessionController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-        
+
         if (Auth::attempt($infologin)) {
-            return redirect('sesi')->with('success', Auth::User()->name .' was Successfully Sign Up!');
+            return redirect('sesi')->with('success', Auth::User()->name . ' was Successfully Sign Up!');
         } else {
             return redirect('sesi')->withErrors(['login_failed' => 'Username dan password yang dimasukkan tidak sesuai'])->withInput();
-        }       
+        }
     }
 }

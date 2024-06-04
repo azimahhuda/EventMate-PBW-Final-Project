@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventParticipant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -50,20 +51,56 @@ class EventController extends Controller
             'event_code' => Str::random(6),
             'user_id' => Auth::id(),
         ]);
-
-        return redirect()->route('events.index')->with('success', 'Event created successfully');
+        return redirect('/dashboard')->with('success', 'Event created successfully');
     }
 
     public function index()
     {
-        $createdEvents = Auth::user()->events;
+        $user =  Auth::user();
         // Debugging
-        dd($createdEvents);
+        $createdEvents = Event::where('user_id',  $user->id)->get();
+        $joinedEvents = EventParticipant::where('user_id', auth()->user()->id)->with('user', 'event')->get();
 
-        $joinedEvents = Event::whereHas('participants', function ($query) {
-            $query->where('user_id', Auth::id());
-        })->get();
+        return view('events.index', compact('createdEvents', 'joinedEvents'));
+    }
 
-        return redirect()->route('events.index')->with('success', 'Event created successfully');
+
+    public function join(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'event_code' => 'required',
+            'email' => 'required|email',
+        ]);
+        $event = Event::where('event_code', $request->input('event_code'))->first();
+        if (!isset($event)) {
+            return back()->withErrors('event not found , please insert the correct code');
+        }
+
+        if ($event->user_id == auth()->user()->id) {
+            return back()->withErrors('You cannot participate in your own events');
+        }
+
+        $eventCreated = EventParticipant::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'user_id' => auth()->user()->id,
+            'event_id' => $event->id
+        ]);
+        if (isset($eventCreated)) {
+            return back()->with('success', 'success join an event');
+        } else {
+            return back()->withErrors('failed to join an event');
+        }
+    }
+
+
+    public function detail($id)
+    {
+        $event = Event::where('id', $id)->with('participants')->first();
+
+        return view('events.detail', compact('event'));
     }
 }

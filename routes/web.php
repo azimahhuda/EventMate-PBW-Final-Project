@@ -28,7 +28,10 @@ Route::post('sesi/create', [SessionController::class, 'create']);
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('logout', [SessionController::class, 'logout'])->name('sesi.logout');
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
+    Route::get('/events/detail/{id}', [EventController::class, 'detail'])->name('events.detail');
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::post('/events/join', [EventController::class, 'join'])->name('events.join');
 });
