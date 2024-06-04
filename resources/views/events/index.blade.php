@@ -7,10 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <a href="/events/create" class="bg-customBlue font-medium inline-block text-lg px-6 py-3 leading-none rounded-md text-white hover:bg-[#B5179E] mt-4 lg:mt-0">Create Event</a>
-    </div>
-
     <div class="container">
         <h2>Your Created Events</h2>
         <ul>
