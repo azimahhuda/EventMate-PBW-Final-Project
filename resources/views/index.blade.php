@@ -160,22 +160,22 @@
         </div>
         <div class="mt-60">
             <div class="flex flex-row mt-3">
-                <a href="#contactsection">
+                <a href="mailto:eventmate.ofc@gmail.com" target="_blank">
                     <img src="{{ asset('img/emailicon.png') }}" style="height: 20px">
                 </a>
-                <a href="#contactsection" class="text-lg ml-3 -mt-1">eventmate@gmail.com</a>
+                <a href="mailto:eventmate.ofc@gmail.com" target="_blank" class="text-lg ml-3 -mt-1">eventmate.ofc@gmail.com</a>                
             </div>
             <div class="flex flex-row mt-3">
-                <a href="#contactsection">
+                <a href="https://wa.me/6282235857621" target="_blank">
                     <img src="{{ asset('img/waicon.png') }}" style="height: 22px">
                 </a>
-                <a href="#contactsection" class="text-lg ml-3">081212121212</a>
+                <a href="https://wa.me/6282235857621" target="_blank" class="text-lg ml-3">082235857621</a>                
             </div>
             <div class="flex flex-row mt-3">
-                <a href="#contactsection">
+                <a href="https://www.instagram.com/eventmate.ofc" target="_blank">
                     <img src="{{ asset('img/igicon.png') }}" style="height: 22px">
                 </a>
-                <a href="#contactsection" class="text-lg ml-3 -mt-1">eventmate.id</a>
+                <a href="https://www.instagram.com/eventmate.ofc" target="_blank" class="text-lg ml-3 -mt-1">eventmate.ofc</a>                
             </div>
             <p class="mt-6">Copyright by EventMate, Inc. 2024</p>
         </div>
