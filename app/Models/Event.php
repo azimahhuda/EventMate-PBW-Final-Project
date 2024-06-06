@@ -11,18 +11,13 @@ class Event extends Model
 
     protected $table = "events";
     protected $fillable = [
-        'event_name', 'date', 'time', 'location', 'location_link', 'capacity', 'dresscode',
-        'contact_person', 'social_media_link', 'event_hashtag', 'attendance', 'polling',
-        'event_code', 'user_id'
+        'event_name', 'date', 'time', 'location', 'location_link', 'capacity', 'dresscode', 'contact_person', 'cp_name', 'socmed_name', 'social_media_link', 'event_hashtag', 'description', 'attendance', 'polling', 'event_code', 'user_id'
     ];
 
     public function participants()
     {
         return $this->hasMany(EventParticipant::class, 'event_id');
     }
-
-
-
 
     public function user()
     {

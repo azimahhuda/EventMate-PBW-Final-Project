@@ -38,6 +38,40 @@ class SessionController extends Controller
         }
     }
 
+    public function settings()
+    {
+        $user = Auth::user();
+        return view('sesi/settings', compact('user'));
+    }
+
+    public function updateSettings(Request $request)
+    {
+        $user = Auth::user();
+        
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:6'
+        ], [
+            'name.required' => 'Name wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Silahkan masukkan email yang valid',
+            'email.unique' => 'Email sudah pernah digunakan',
+            'password.min' => 'Minimum password 6 karakter'
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('settings')->with('success', 'Data berhasil diupdate');
+    }
+
     function logout()
     {
         Auth::logout();
@@ -53,12 +87,10 @@ class SessionController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6'
         ], [
             'name.required' => 'Name wajib diisi',
-            'phone.required' => 'Phone wajib diisi',
             'email.required' => 'Email wajib diisi',
             'email.email' => 'Silahkan masukkan email yang valid',
             'email.unique' => 'Email sudah pernah digunakan',
@@ -68,7 +100,6 @@ class SessionController extends Controller
 
         $data = [
             'name' => $request->name,
-            'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ];

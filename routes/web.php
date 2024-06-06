@@ -18,7 +18,9 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/index', [LPController::class, 'index']);
+Route::get('/', function () {
+    return view('landingpage.index');
+})->name('landingpage.index');
 
 Route::get('sesi', [SessionController::class, 'index']);
 Route::get('sesi/signup', [SessionController::class, 'signup']);
@@ -30,8 +32,19 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 Route::middleware(['auth'])->group(function () {
     Route::get('logout', [SessionController::class, 'logout'])->name('sesi.logout');
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
-    Route::post('/events', [EventController::class, 'store'])->name('events.store');
     Route::get('/events/detail/{id}', [EventController::class, 'detail'])->name('events.detail');
-    Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::get('/events/createdetail/{id}', [EventController::class, 'createdetail'])->name('events.createdetail');
+    Route::post('/events', [EventController::class, 'index'])->name('events.index1');
+    Route::get('/index1', [EventController::class, 'index'])->name('events.index1');
     Route::post('/events/join', [EventController::class, 'join'])->name('events.join');
+    Route::post('/events/{event}/participants/{participant}/attendance', [EventController::class, 'updateAttendance'])->name('events.updateAttendance');
+    Route::post('/events/{event}/participants/{participant}/feedback', [EventController::class, 'submitFeedback'])->name('events.submitFeedback');
+    Route::get('/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::post('/events/{id}', [EventController::class, 'update'])->name('events.update');
+    Route::get('/events/{eventId}/downloadParticipant', [EventController::class, 'downloadParticipant'])->name('events.downloadParticipant');
+    Route::get('/events/{eventId}/search', 'EventController@searchParticipant')->name('events.searchParticipant');
+    Route::post('/events', [EventController::class, 'store'])->name('events.store');
+    Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+    Route::get('settings', [SessionController::class, 'settings'])->name('settings');
+    Route::post('settings', [SessionController::class, 'updateSettings'])->name('settings.update');
 });

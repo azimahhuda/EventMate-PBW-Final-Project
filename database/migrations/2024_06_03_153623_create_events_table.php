@@ -18,8 +18,11 @@ class CreateEventsTable extends Migration
             $table->integer('capacity');
             $table->string('dresscode');
             $table->string('contact_person');
+            $table->string('cp_name');
+            $table->string('socmed_name');
             $table->string('social_media_link')->nullable();
             $table->string('event_hashtag')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('attendance')->default(false);
             $table->boolean('polling')->default(false);
             $table->string('event_code', 6)->unique();
