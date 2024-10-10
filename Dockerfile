@@ -16,6 +16,16 @@ COPY . /var/www/html/
 # Set working directory
 WORKDIR /var/www/html
 
+# Install Node.js and NPM
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs
+
+# Install Vite
+RUN npm install --save-dev vite
+
+# Install PHP dependencies
+RUN composer install
+
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
