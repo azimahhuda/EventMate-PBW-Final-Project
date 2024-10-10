@@ -8,6 +8,9 @@ RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+# Salin file konfigurasi Apache
+COPY ./path/to/your/000-default.conf /etc/apache2/sites-available/000-default.conf
+
 # Copy application files
 COPY . /var/www/html/
 
